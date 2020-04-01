@@ -15,7 +15,7 @@ B: ABS=260800000000003
 
 
 (a).B: PROP=2--->二進位為0010，代表第1個bit被設立起來，到input.h中的"Device properties and quirks"區段查找，其值代表
-　　(INPUT_PROP_DIRECT, 0x01, 十進位：2).
+　　(INPUT_PROP_DIRECT, 0x01, 十進位：1).
 
 (b).B: EV=b--->二進位為1011，代表第0, 1, 3個bit被設立起來，請去看"Event types"區段，其值代表
     (EV_SYN, 0x00, 十進位：0),
