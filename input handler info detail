@@ -1,0 +1,37 @@
+命令列命令: cat /proc/bus/input/devices
+以下資訊需搭配include/linux/input.h 或是 include/linux/input_event_code.h
+
+
+I: Bus=0003 Vendor=0457 Product=6596 Version=0111
+N: Name="Silicon Integrated System Co. SiS HID Touch Controller"
+P: Phys=usb-0000:00:14.0-9/input0
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-9/1-9:1.0/input/input6
+U: Uniq=
+H: Handlers=mouse1 event6 
+B: PROP=2
+B: EV=b
+B: KEY=400 0 0 0 0 0
+B: ABS=260800000000003
+
+
+(a).B: PROP=2--->二進位為0010，代表第1個bit被設立起來，到input.h中的"Device properties and quirks"區段查找，其值代表
+　　(INPUT_PROP_DIRECT, 0x01, 十進位：2).
+
+(b).B: EV=b--->二進位為1011，代表第0, 1, 3個bit被設立起來，請去看"Event types"區段，其值代表
+    (EV_SYN, 0x00, 十進位：0),
+    (EV_KEY, 0x01, 十進位：1),
+    (EV_ABS, 0x03, 十進位：3).
+
+(c).B: KEY=400 0 0 0 0 0--->從右到左的前5個0，每個0代表64個二進位的0，代表0~319個bit都沒有被設立，
+    之後的400代表第330個bit被設立起來，請去看"Keys and buttons"區段，其值代表
+    (BTN_TOUCH, 0x14a, 十進制：330)。
+
+(d).B: ABS=260800000000003--->代表第0, 1, 47, 53, 54, 57個bit被設立起來，請去看"Absolute axes"區段，其值代表
+    (ABS_X, 0x00, 十進制：0),
+    (ABS_Y, 0x01, 十進制：1),
+    (ABS_MT_SLOT, 0x2f, 十進制：47),
+    (ABS_MT_POSITION_X, 0x35, 十進制：53),
+    (ABS_MT_POSITION_Y, 0x36, 十進制：54),
+    (ABS_MT_TRACKING_ID, 0x39, 十進制：57).
+     
+    
